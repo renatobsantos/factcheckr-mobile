@@ -1,6 +1,14 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@screens": ["./src/screens/index.tsx"],
+      "@routes": ["./src/routes/index.tsx"],
+      "@theme": ["./src/global/styles/index.tsx"],
+      "@types": ["./src/types/index.ts"]
+    }
+  },
+  "exclude": ["node_modules"]
 }

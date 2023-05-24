@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react'
+
+import { Epilogue_700Bold } from '@expo-google-fonts/epilogue'
+import {
+  Inter_300Light,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter'
+import { Poppins_600SemiBold } from '@expo-google-fonts/poppins'
+import { Routes } from '@routes'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsloaded] = useFonts({
+    Inter_300Light,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_700Bold,
+    Epilogue_700Bold,
+    Poppins_600SemiBold,
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync()
+    }
+
+    prepare()
+  }, [])
+
+  if (!fontsloaded) {
+    return undefined
+  } else {
+    SplashScreen.hideAsync()
+  }
+
+  return (
+    <>
+      <Routes />
+      <StatusBar style="auto" />
+    </>
+  )
+}
+0
