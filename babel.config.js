@@ -12,6 +12,7 @@ module.exports = function (api) {
             '@routes': './src/routes/index.tsx',
             '@theme': './src/global/styles/index.tsx',
             '@types': './src/screens/index.ts',
+            '@utils': './src/utils/index.tsx',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
