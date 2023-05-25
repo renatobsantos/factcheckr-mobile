@@ -13,12 +13,12 @@ const VerifyButton = () => {
 const styles = StyleSheet.create({
   container: {
     width: '50%',
-    height: 50,
+    height: '7%',
     backgroundColor: theme.colors.purple,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '5%',
+    marginTop: '7%',
   },
   text: {
     fontSize: 20,

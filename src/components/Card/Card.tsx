@@ -43,8 +43,8 @@ const Card = ({ title, description }: CardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 165,
-    height: 170,
+    width: '49%',
+    height: '135%',
     backgroundColor: theme.colors.black,
     borderRadius: 16,
     marginBottom: '2%',
