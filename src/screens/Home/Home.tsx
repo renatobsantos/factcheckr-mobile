@@ -1,6 +1,9 @@
 import { Text } from 'react-native'
 
+import { AdvancedSettings } from '@components/AdvancedSettings'
 import { Container } from '@components/Container'
+import { SearchBar } from '@components/SearchBar'
+import { VerifyButton } from '@components/VerifyButton'
 import { theme } from '@theme'
 
 const Home = () => {
@@ -10,6 +13,9 @@ const Home = () => {
         O que você {'\n'} gostaria de
         <Text style={{ color: theme.colors.purple }}> verificar hoje</Text>?
       </Text>
+      <SearchBar />
+      <AdvancedSettings />
+      <VerifyButton />
     </Container>
   )
 }
