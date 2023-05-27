@@ -3,7 +3,10 @@ import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { Feather } from '@expo/vector-icons'
-import { Education, Explore, Home, Settings } from '@screens'
+import { Education } from '@screens/Education'
+import { Explore } from '@screens/Explore'
+import { Home } from '@screens/Home'
+import { Settings } from '@screens/Settings'
 import { theme } from '@theme'
 import { AppParamsList } from '@types'
 

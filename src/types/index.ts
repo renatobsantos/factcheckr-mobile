@@ -4,3 +4,9 @@ export type AppParamsList = {
   Explore: undefined
   Settings: undefined
 }
+
+export enum CheckedNewsStatusEnum {
+  REAL = 'verdadeira',
+  UNCERTAIN = 'sem certeza',
+  FAKE = 'falsa',
+}

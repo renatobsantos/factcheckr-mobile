@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { Card } from '@components/Card'
+import { ModelCard } from '@components/ModelCard'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
@@ -25,10 +25,10 @@ const AdvancedSettings = () => {
 
       {isDown && (
         <ScrollView style={styles.cardContainer} contentContainerStyle={styles.scrollContainer}>
-          <Card key="1" title="Modelo 1" description="Lorem ipsum" />
-          <Card key="2" title="Modelo 2" description="Lorem ipsum" />
-          <Card key="3" title="Modelo 3" description="Lorem ipsum" />
-          <Card key="4" title="Modelo 4" description="Lorem ipsum" />
+          <ModelCard key="1" title="Modelo 1" description="Lorem ipsum" />
+          <ModelCard key="2" title="Modelo 2" description="Lorem ipsum" />
+          <ModelCard key="3" title="Modelo 3" description="Lorem ipsum" />
+          <ModelCard key="4" title="Modelo 4" description="Lorem ipsum" />
         </ScrollView>
       )}
     </View>

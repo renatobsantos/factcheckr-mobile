@@ -4,7 +4,7 @@
         "strict": true,
         "paths": {
             "@components/*": ["./src/components/*"],
-            "@screens": ["./src/screens/index.tsx"],
+            "@screens/*": ["./src/screens/*"],
             "@routes": ["./src/routes/index.tsx" ],
             "@theme": ["./src/global/styles/index.tsx"],
             "@types": ["./src/types/index.ts"],

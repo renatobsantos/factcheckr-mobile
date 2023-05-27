@@ -4,12 +4,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
-interface CardProps {
+interface ModelCardProps {
   title: string
   description: string
 }
 
-const Card = ({ title, description }: CardProps) => {
+const ModelCard = ({ title, description }: ModelCardProps) => {
   const [buttonText, setButtonText] = useState<'Adicionar' | 'Remover'>('Adicionar')
 
   const onPress = () => {
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Card
+export default ModelCard
