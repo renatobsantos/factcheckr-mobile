@@ -59,7 +59,7 @@ const Trending = () => {
         onPress={() => setIsDown(!isDown)}
         activeOpacity={0.7}
       >
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', width: '50%' }}>
           <Text style={theme.styles.heading2}>Em Alta</Text>
           <Feather
             name="trending-up"
