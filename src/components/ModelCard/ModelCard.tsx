@@ -43,11 +43,12 @@ const ModelCard = ({ title, description }: ModelCardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '49%',
-    height: '135%',
+    width: '48%',
+    height: 170,
     backgroundColor: theme.colors.black,
     borderRadius: 16,
     marginBottom: '2%',
+    marginHorizontal: '1%',
   },
   headerContainer: {
     flexDirection: 'row',

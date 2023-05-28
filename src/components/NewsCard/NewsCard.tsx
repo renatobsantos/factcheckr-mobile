@@ -49,10 +49,11 @@ const NewsCard = ({ title, status, link, date }: NewsCardProps) => {
           {
             color: '#5A88FF',
             marginVertical: '3%',
+            textDecorationLine: 'underline',
           },
         ]}
       >
-        {link ? link : 'Sem link'}
+        {link ?? 'Sem link'}
       </Text>
       <Text style={[theme.styles.bodySm, { color: theme.colors.white }]}>
         Verificada em:{' '}
@@ -72,11 +73,10 @@ const NewsCard = ({ title, status, link, date }: NewsCardProps) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '23%',
+    height: 100,
     backgroundColor: theme.colors.black,
     borderRadius: 16,
-    paddingTop: '2.5%',
-    paddingHorizontal: '5%',
+    padding: '4%',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     marginBottom: '2%',

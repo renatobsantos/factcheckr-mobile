@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { NewsCard } from '@components/NewsCard'
 import { Feather } from '@expo/vector-icons'
@@ -8,6 +8,49 @@ import { CheckedNewsStatusEnum } from '@types'
 
 const Trending = () => {
   const [isDown, setIsDown] = useState(true)
+
+  const DATA = [
+    {
+      id: '1',
+      title: 'Titulo 1',
+      status: CheckedNewsStatusEnum.REAL,
+      link: 'https://example.com',
+      date: new Date().toLocaleDateString(),
+    },
+    {
+      id: '2',
+      title: 'Titulo 2',
+      status: CheckedNewsStatusEnum.UNCERTAIN,
+      date: new Date().toLocaleDateString(),
+    },
+    {
+      id: '3',
+      title: 'Titulo 3',
+      status: CheckedNewsStatusEnum.FAKE,
+      link: 'https://example.com',
+      date: new Date().toLocaleDateString(),
+    },
+    {
+      id: '4',
+      title: 'Titulo 4',
+      status: CheckedNewsStatusEnum.REAL,
+      link: 'https://example.com',
+      date: new Date().toLocaleDateString(),
+    },
+    {
+      id: '5',
+      title: 'Titulo 5',
+      status: CheckedNewsStatusEnum.UNCERTAIN,
+      date: new Date().toLocaleDateString(),
+    },
+    {
+      id: '6',
+      title: 'Titulo 6',
+      status: CheckedNewsStatusEnum.FAKE,
+      link: 'https://example.com',
+      date: new Date().toLocaleDateString(),
+    },
+  ]
 
   return (
     <View style={styles.container}>
@@ -29,16 +72,14 @@ const Trending = () => {
       </TouchableOpacity>
 
       {isDown && (
-        <View style={styles.newsContainer}>
-          <NewsCard
-            title={'Titulo'}
-            status={CheckedNewsStatusEnum.REAL}
-            link={'https://example.com'}
-            date={'25/05/2023'}
-          />
-          <NewsCard title={'Titulo'} status={CheckedNewsStatusEnum.UNCERTAIN} date={'25/05/2023'} />
-          <NewsCard title={'Titulo'} status={CheckedNewsStatusEnum.FAKE} date={'25/05/2023'} />
-        </View>
+        <FlatList
+          data={DATA}
+          style={styles.newsContainer}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <NewsCard title={item.title} status={item.status} link={item.link} date={item.date} />
+          )}
+        />
       )}
     </View>
   )
@@ -47,10 +88,9 @@ const Trending = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '60%',
+    height: '55%',
     marginTop: '7%',
     alignItems: 'center',
-    borderBottomEndRadius: 16,
   },
   buttonContainer: {
     width: '100%',

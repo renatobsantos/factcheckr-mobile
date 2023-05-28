@@ -3,11 +3,11 @@ import { Dimensions, StyleSheet } from 'react-native'
 export const theme = {
   colors: {
     black: '#000000',
+    blue: '#0069FF',
     white: '#FFFFFF',
     gray: '#AEAEAE',
     green: '#51FF42',
     orange: '#FA7236',
-    purple: '#6345FE',
     red: '#FF4242',
     yellow: '#FFCA42',
   },

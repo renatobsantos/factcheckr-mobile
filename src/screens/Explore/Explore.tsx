@@ -18,11 +18,11 @@ const Explore = () => {
         <Feather
           name="chevron-right"
           size={20}
-          color={theme.colors.purple}
+          color={theme.colors.blue}
           style={{ paddingLeft: '1%' }}
         />
       </TouchableOpacity>
-      <SearchBar />
+      <SearchBar placeholder="Digite o título ou link da notícia" />
       <Trending />
     </Container>
   )
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   link: {
-    color: theme.colors.purple,
+    color: theme.colors.blue,
     fontSize: 16,
     fontFamily: theme.fonts.InterMedium,
     textDecorationLine: 'underline',
