@@ -8,10 +8,10 @@ module.exports = function (api) {
         {
           alias: {
             '@components': './src/components',
-            '@screens': './src/screens/index.tsx',
+            '@screens': './src/screens',
             '@routes': './src/routes/index.tsx',
             '@theme': './src/global/styles/index.tsx',
-            '@types': './src/screens/index.ts',
+            '@types': './src/types/index.ts',
             '@utils': './src/utils/index.tsx',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx'],

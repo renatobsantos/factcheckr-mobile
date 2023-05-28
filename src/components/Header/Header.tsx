@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>
-        Fact<Text style={[styles.headerText, { color: theme.colors.purple }]}>Checkr</Text>
+        Fact<Text style={[styles.headerText, { color: theme.colors.blue }]}>Checkr</Text>
       </Text>
 
       <TouchableOpacity style={styles.iconContainer} activeOpacity={0.7}>

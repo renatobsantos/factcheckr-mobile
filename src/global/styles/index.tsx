@@ -3,9 +3,13 @@ import { Dimensions, StyleSheet } from 'react-native'
 export const theme = {
   colors: {
     black: '#000000',
+    blue: '#0069FF',
     white: '#FFFFFF',
     gray: '#AEAEAE',
-    purple: '#6345FE',
+    green: '#51FF42',
+    orange: '#FA7236',
+    red: '#FF4242',
+    yellow: '#FFCA42',
   },
   fonts: {
     InterLight: 'Inter_300Light',
@@ -32,6 +36,16 @@ export const theme = {
       fontSize: 20,
       color: '#000000',
       fontFamily: 'Poppins_600SemiBold',
+    },
+    bodyMd: {
+      fontSize: 16,
+      color: '#000000',
+      fontFamily: 'Inter_400Regular',
+    },
+    bodySm: {
+      fontSize: 12,
+      color: '#000000',
+      fontFamily: 'Inter_400Regular',
     },
   }),
 }

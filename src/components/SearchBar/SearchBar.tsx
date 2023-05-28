@@ -4,13 +4,17 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
-const SearchBar = () => {
+interface SearchBarProps {
+  placeholder?: string
+}
+
+const SearchBar = ({ placeholder }: SearchBarProps) => {
   const [value, setValue] = useState('')
 
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Digite o link ou texto da notícia"
+        placeholder={placeholder ?? 'Digite o link ou texto da notícia'}
         placeholderTextColor="#9E9E9E"
         style={styles.inputText}
         onChangeText={(text) => setValue(text)}

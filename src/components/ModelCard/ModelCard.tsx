@@ -4,12 +4,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
-interface CardProps {
+interface ModelCardProps {
   title: string
   description: string
 }
 
-const Card = ({ title, description }: CardProps) => {
+const ModelCard = ({ title, description }: ModelCardProps) => {
   const [buttonText, setButtonText] = useState<'Adicionar' | 'Remover'>('Adicionar')
 
   const onPress = () => {
@@ -43,11 +43,12 @@ const Card = ({ title, description }: CardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '49%',
-    height: '135%',
+    width: '48%',
+    height: 170,
     backgroundColor: theme.colors.black,
     borderRadius: 16,
     marginBottom: '2%',
+    marginHorizontal: '1%',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -95,4 +96,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Card
+export default ModelCard

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   container: {
     width: '50%',
     height: '7%',
-    backgroundColor: theme.colors.purple,
+    backgroundColor: theme.colors.blue,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: theme.colors.white,
-    fontFamily: theme.fonts.InterRegular,
+    fontFamily: theme.fonts.InterMedium,
   },
 })
 
