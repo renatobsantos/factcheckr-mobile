@@ -7,7 +7,7 @@ import {
   Inter_500Medium,
   Inter_700Bold,
 } from '@expo-google-fonts/inter'
-import { Poppins_600SemiBold } from '@expo-google-fonts/poppins'
+import { Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import { Routes } from '@routes'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -20,7 +20,9 @@ export default function App() {
     Inter_500Medium,
     Inter_700Bold,
     Epilogue_700Bold,
+    Poppins_500Medium,
     Poppins_600SemiBold,
+    Poppins_700Bold,
   })
 
   useEffect(() => {
