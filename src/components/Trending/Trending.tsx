@@ -65,7 +65,7 @@ const Trending = () => {
             name="trending-up"
             size={24}
             color={theme.colors.orange}
-            style={{ paddingLeft: '5%' }}
+            style={{ paddingLeft: '3%' }}
           />
         </View>
         <Feather name={isDown ? 'chevron-down' : 'chevron-up'} size={28} />

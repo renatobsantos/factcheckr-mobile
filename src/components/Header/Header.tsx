@@ -3,16 +3,22 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
-const Header = () => {
+interface HeaderProps {
+  isProfilePage?: boolean
+}
+
+const Header = ({ isProfilePage = false }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>
         Fact<Text style={[styles.headerText, { color: theme.colors.blue }]}>Checkr</Text>
       </Text>
 
-      <TouchableOpacity style={styles.iconContainer} activeOpacity={0.7}>
-        <Feather name={'user'} size={20} color={theme.colors.white} />
-      </TouchableOpacity>
+      {!isProfilePage && (
+        <TouchableOpacity style={styles.iconContainer} activeOpacity={0.7}>
+          <Feather name={'user'} size={20} color={theme.colors.white} />
+        </TouchableOpacity>
+      )}
     </View>
   )
 }

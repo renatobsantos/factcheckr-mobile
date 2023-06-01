@@ -17,14 +17,16 @@ export const theme = {
     InterMedium: 'Inter_500Medium',
     InterBold: 'Inter_700Bold',
     EpilogueBold: 'Epilogue_700Bold',
+    PoppinsMedium: 'Poppins_500Medium',
     PoppinsSemiBold: 'Poppins_600SemiBold',
+    PoppinsBold: 'Poppins_700Bold',
   },
   screen_width: Dimensions.get('window').width,
   screen_height: Dimensions.get('window').height,
   styles: StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#FFFFFF',
       alignItems: 'center',
     },
     heading1: {
