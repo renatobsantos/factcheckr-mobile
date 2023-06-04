@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 
 import { NewsCard } from '@components/NewsCard'
-import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 import { CheckedNewsStatusEnum } from '@types'
 
 const Trending = () => {
-  const [isDown, setIsDown] = useState(true)
-
   const DATA = [
     {
       id: '1',
-      title: 'Titulo 1',
+      title: 'Titulo 1 Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.REAL,
       link: 'https://example.com',
       date: new Date().toLocaleDateString(),
@@ -20,12 +18,16 @@ const Trending = () => {
     {
       id: '2',
       title: 'Titulo 2',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.UNCERTAIN,
       date: new Date().toLocaleDateString(),
     },
     {
       id: '3',
       title: 'Titulo 3',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.FAKE,
       link: 'https://example.com',
       date: new Date().toLocaleDateString(),
@@ -33,6 +35,8 @@ const Trending = () => {
     {
       id: '4',
       title: 'Titulo 4',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.REAL,
       link: 'https://example.com',
       date: new Date().toLocaleDateString(),
@@ -40,12 +44,16 @@ const Trending = () => {
     {
       id: '5',
       title: 'Titulo 5',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.UNCERTAIN,
       date: new Date().toLocaleDateString(),
     },
     {
       id: '6',
       title: 'Titulo 6',
+      description:
+        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
       status: CheckedNewsStatusEnum.FAKE,
       link: 'https://example.com',
       date: new Date().toLocaleDateString(),
@@ -54,33 +62,12 @@ const Trending = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={() => setIsDown(!isDown)}
-        activeOpacity={0.7}
-      >
-        <View style={{ flexDirection: 'row', width: '50%' }}>
-          <Text style={theme.styles.heading2}>Em Alta</Text>
-          <Feather
-            name="trending-up"
-            size={24}
-            color={theme.colors.orange}
-            style={{ paddingLeft: '3%' }}
-          />
-        </View>
-        <Feather name={isDown ? 'chevron-down' : 'chevron-up'} size={28} />
-      </TouchableOpacity>
-
-      {isDown && (
-        <FlatList
-          data={DATA}
-          style={styles.newsContainer}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <NewsCard title={item.title} status={item.status} link={item.link} date={item.date} />
-          )}
-        />
-      )}
+      <FlatList
+        data={DATA}
+        style={styles.newsContainer}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <NewsCard item={item} />}
+      />
     </View>
   )
 }
@@ -89,7 +76,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '55%',
-    marginTop: '7%',
     alignItems: 'center',
   },
   buttonContainer: {
@@ -101,7 +87,7 @@ const styles = StyleSheet.create({
   newsContainer: {
     width: '100%',
     height: '90%',
-    marginTop: '5%',
+    marginTop: theme.spacing20,
   },
 })
 

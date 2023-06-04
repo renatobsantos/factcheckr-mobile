@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons'
 import { Education } from '@screens/Education'
 import { Explore } from '@screens/Explore'
 import { Home } from '@screens/Home'
-import { Settings } from '@screens/Settings'
+import { Profile } from '@screens/Profile'
 import { theme } from '@theme'
 import { AppParamsList } from '@types'
 
@@ -23,22 +23,20 @@ const AppRoutes = () => {
             let iconName: keyof typeof Feather.glyphMap = 'feather'
 
             if (route.name === 'Home') iconName = 'home'
-            else if (route.name === 'Education') iconName = 'edit-2'
-            else if (route.name === 'Explore') iconName = 'archive'
-            else if (route.name === 'Settings') iconName = 'settings'
+            else if (route.name === 'Education') iconName = 'book-open'
+            else if (route.name === 'Explore') iconName = 'compass'
+            else if (route.name === 'Profile') iconName = 'user'
 
             return <Feather name={iconName} size={22} color={color} />
           },
-          tabBarActiveTintColor: theme.colors.white,
+          tabBarActiveTintColor: theme.colors.black,
           tabBarInactiveTintColor: theme.colors.gray,
           tabBarShowLabel: false,
           headerShown: false,
           tabBarStyle: {
-            borderRadius: 32,
-            width: theme.screen_width - 40,
-            height: 64,
-            backgroundColor: theme.colors.black,
-            bottom: 20,
+            width: theme.screen_width,
+            height: theme.spacing64,
+            backgroundColor: theme.colors.white,
           },
           tabBarItemStyle: {
             height: 64,
@@ -48,7 +46,7 @@ const AppRoutes = () => {
         <Screen name="Home" component={Home} />
         <Screen name="Education" component={Education} />
         <Screen name="Explore" component={Explore} />
-        <Screen name="Settings" component={Settings} />
+        <Screen name="Profile" component={Profile} />
       </Navigator>
     </View>
   )
