@@ -5,25 +5,21 @@ import { theme } from '@theme'
 const VerifyButton = () => {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.8}>
-      <Text style={styles.text}>Verificar</Text>
+      <Text style={[theme.styles.heading1, { color: theme.colors.white }]}>Verificar</Text>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '50%',
-    height: '7%',
+    position: 'absolute',
+    width: '60%',
+    height: 54,
     backgroundColor: theme.colors.blue,
-    borderRadius: 16,
+    borderRadius: theme.spacing32,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '7%',
-  },
-  text: {
-    fontSize: 20,
-    color: theme.colors.white,
-    fontFamily: theme.fonts.InterMedium,
+    bottom: theme.spacing32,
   },
 })
 

@@ -14,7 +14,7 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder={placeholder ?? 'Digite o link ou texto da notícia'}
+        placeholder={placeholder ?? 'Digite o link da notícia'}
         placeholderTextColor="#9E9E9E"
         style={styles.inputText}
         onChangeText={(text) => setValue(text)}
@@ -28,14 +28,16 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '8%',
-    backgroundColor: '#F4F4F4',
+    height: theme.spacing64,
+    backgroundColor: theme.colors.white,
     flexDirection: 'row',
-    marginTop: '8%',
-    paddingHorizontal: '5%',
+    marginTop: theme.spacing20,
+    paddingHorizontal: theme.spacing20,
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: 16,
+    borderRadius: theme.spacing32,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   inputText: {
     fontSize: 16,

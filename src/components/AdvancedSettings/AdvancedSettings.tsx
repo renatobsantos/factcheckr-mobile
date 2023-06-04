@@ -5,14 +5,18 @@ import { ModelCard } from '@components/ModelCard'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
-const AdvancedSettings = () => {
+interface AdvancedSettingsProps {
+  isLink: boolean
+}
+
+const AdvancedSettings = ({ isLink }: AdvancedSettingsProps) => {
   const [isDown, setIsDown] = useState(true)
 
   const DATA = [
     {
       id: '1',
       title: 'Modelo 1',
-      description: 'Lorem Ipsum',
+      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
     },
     {
       id: '2',
@@ -29,9 +33,14 @@ const AdvancedSettings = () => {
       title: 'Modelo 4',
       description: 'Lorem Ipsum',
     },
+    {
+      id: '5',
+      title: 'Modelo 5',
+      description: 'Lorem Ipsum',
+    },
   ]
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { height: isLink ? '41%' : '22.5%' }]}>
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => setIsDown(!isDown)}
@@ -44,10 +53,9 @@ const AdvancedSettings = () => {
       {isDown && (
         <FlatList
           data={DATA}
-          numColumns={2}
           style={styles.cardContainer}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ModelCard title={item.title} description={item.description} />}
+          renderItem={({ item }) => <ModelCard item={item} />}
         />
       )}
     </View>
@@ -57,8 +65,7 @@ const AdvancedSettings = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '45%',
-    marginTop: '7%',
+    marginTop: theme.spacing24,
     alignItems: 'center',
   },
   buttonContainer: {
@@ -69,8 +76,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    height: '55%',
-    marginTop: '7%',
+    height: '100%',
+    marginTop: theme.spacing20,
   },
 })
 export default AdvancedSettings

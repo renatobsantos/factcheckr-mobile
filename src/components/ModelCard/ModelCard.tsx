@@ -5,94 +5,115 @@ import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 
 interface ModelCardProps {
-  title: string
-  description: string
+  item: {
+    title: string
+    description: string
+  }
 }
 
-const ModelCard = ({ title, description }: ModelCardProps) => {
-  const [buttonText, setButtonText] = useState<'Adicionar' | 'Remover'>('Adicionar')
+const ModelCard = ({ item }: ModelCardProps) => {
+  const { title, description } = item
+  const [isModelAdded, setIsModelAdded] = useState(false)
+  const [isInfoPressed, setIsInfoPressed] = useState(false)
 
-  const onPress = () => {
-    if (buttonText === 'Adicionar') setButtonText('Remover')
-    else setButtonText('Adicionar')
-  }
+  const onPress = () => setIsModelAdded(!isModelAdded)
+  const onInfoPress = () => setIsInfoPressed(!isInfoPressed)
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
+    <>
+      <View
+        style={[
+          styles.container,
+          {
+            marginBottom: isInfoPressed ? -theme.spacing32 : theme.spacing10,
+          },
+        ]}
+      >
         <Text style={styles.headerTitle}>{title}</Text>
-        <Feather name="info" size={22} color={theme.colors.white} style={styles.headerIcon} />
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity
+            style={[styles.buttonContainer, { marginRight: theme.spacing10 }]}
+            activeOpacity={0.7}
+            onPress={onInfoPress}
+          >
+            <Feather name="info" size={theme.spacing20} color={theme.colors.black} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.buttonContainer, { backgroundColor: theme.colors.black }]}
+            activeOpacity={0.7}
+            onPress={onPress}
+          >
+            <Feather
+              name={isModelAdded ? 'x' : 'plus'}
+              size={theme.spacing20}
+              color={isModelAdded ? theme.colors.red : theme.colors.white}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <Text style={styles.descriptionText}>{description}</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onPress}>
+      {isInfoPressed && (
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionText}>{description}</Text>
           <Text
             style={[
-              styles.buttonText,
-              { color: buttonText === 'Remover' ? 'red' : theme.colors.black },
+              styles.descriptionText,
+              {
+                position: 'absolute',
+                alignSelf: 'center',
+                bottom: theme.spacing10,
+                color: '#808080',
+              },
             ]}
           >
-            {buttonText}
+            Pelo menos um modelo deve ser utilizado
           </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        </View>
+      )}
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '48%',
-    height: 170,
-    backgroundColor: theme.colors.black,
-    borderRadius: 16,
-    marginBottom: '2%',
-    marginHorizontal: '1%',
-  },
-  headerContainer: {
+    width: '100%',
+    height: theme.spacing64,
+    backgroundColor: theme.colors.white,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    marginTop: '7.5%',
+    justifyContent: 'space-between',
+    borderRadius: theme.spacing32,
+    paddingHorizontal: theme.spacing20,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   headerTitle: {
-    fontSize: 16,
-    fontFamily: theme.fonts.InterRegular,
-    color: theme.colors.white,
-  },
-  headerIcon: {
-    position: 'absolute',
-    right: '10%',
-  },
-  descriptionText: {
-    marginTop: '5%',
-    marginLeft: '10%',
-    color: theme.colors.white,
-    fontFamily: theme.fonts.InterLight,
-    fontSize: 12,
+    fontSize: 20,
+    fontFamily: theme.fonts.PoppinsMedium,
+    color: theme.colors.black,
   },
   buttonContainer: {
-    width: '100%',
-    height: '20%',
-    position: 'absolute',
-    bottom: '5%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  button: {
-    width: '80%',
-    height: '100%',
-    backgroundColor: theme.colors.white,
-    position: 'absolute',
+    width: theme.spacing28,
+    height: theme.spacing28,
+    borderRadius: theme.spacing28,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 16,
+    backgroundColor: theme.colors.border,
   },
-  buttonText: {
-    fontFamily: theme.fonts.InterMedium,
-    fontSize: 12,
+  descriptionContainer: {
+    width: '100%',
+    zIndex: -1,
+    height: theme.spacing64 + theme.spacing64,
+    borderBottomStartRadius: theme.spacing32,
+    borderBottomRightRadius: theme.spacing32,
+    backgroundColor: theme.colors.border,
+    fontFamily: theme.fonts.InterLight,
+    marginBottom: theme.spacing10,
+    paddingTop: theme.spacing32 + theme.spacing10,
+    paddingHorizontal: 16,
+  },
+  descriptionText: {
+    fontSize: 14,
+    fontFamily: theme.fonts.InterRegular,
   },
 })
 

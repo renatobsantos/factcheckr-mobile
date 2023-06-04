@@ -6,13 +6,12 @@ import { theme } from '@theme'
 
 interface ContainerProps {
   children: ReactNode
-  isProfilePage?: boolean
 }
 
-const Container = ({ children, isProfilePage = false }: ContainerProps) => {
+const Container = ({ children }: ContainerProps) => {
   return (
     <View style={theme.styles.container}>
-      <Header isProfilePage={isProfilePage} />
+      <Header />
       {children}
     </View>
   )

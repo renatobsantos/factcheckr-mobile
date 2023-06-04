@@ -5,27 +5,45 @@ import { theme } from '@theme'
 import { CheckedNewsStatusEnum } from '@types'
 
 interface NewsCardProps {
-  title: string
-  status: CheckedNewsStatusEnum
-  link?: string
-  date: string
+  item: {
+    title: string
+    description: string
+    status: CheckedNewsStatusEnum
+    link?: string
+    date: string
+  }
 }
 
-const NewsCard = ({ title, status, link, date }: NewsCardProps) => {
-  const getColorStatus = (real: string, uncertain: string, fake: string) => {
-    return status === 'verdadeira' ? real : status === 'sem certeza' ? uncertain : fake
+const NewsCard = ({ item }: NewsCardProps) => {
+  const { title, description, status, link, date } = item
+
+  const getColorStatus = () => {
+    return status === 'verdadeira'
+      ? theme.colors.green
+      : status === 'sem certeza'
+      ? theme.colors.yellow
+      : theme.colors.red
   }
 
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.8}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.5}>
       <View style={styles.titleContainer}>
-        <Text style={[theme.styles.heading2, { color: theme.colors.white }]}>{title}</Text>
+        <Text style={[theme.styles.heading3, { width: '90%' }]}>{title}</Text>
+        <Feather name="trending-up" size={24} color={theme.colors.orange} />
+      </View>
+      <Text style={[theme.styles.bodySm, theme.styles.link]}>{link ?? 'sem link'}</Text>
+      <Text style={[theme.styles.bodySm, { width: '90%' }]}>{description}</Text>
+      <View style={styles.footerContainer}>
+        <Text style={theme.styles.bodySm}>
+          Verificada em:{' '}
+          <Text style={[theme.styles.bodySm, { fontFamily: theme.fonts.InterMedium }]}>{date}</Text>
+        </Text>
         <View style={styles.statusContainer}>
           <Text
             style={{
-              color: getColorStatus(theme.colors.green, theme.colors.yellow, theme.colors.red),
+              color: getColorStatus(),
               textTransform: 'uppercase',
-              paddingRight: status === 'falsa' ? '5%' : '4%',
+              paddingRight: theme.spacing10,
             }}
           >
             {status}
@@ -39,33 +57,10 @@ const NewsCard = ({ title, status, link, date }: NewsCardProps) => {
                 : 'x-circle'
             }
             size={24}
-            color={getColorStatus(theme.colors.green, theme.colors.yellow, theme.colors.red)}
+            color={getColorStatus()}
           />
         </View>
       </View>
-      <Text
-        style={[
-          theme.styles.bodySm,
-          {
-            color: '#5A88FF',
-            marginVertical: '3%',
-            textDecorationLine: 'underline',
-          },
-        ]}
-      >
-        {link ?? 'Sem link'}
-      </Text>
-      <Text style={[theme.styles.bodySm, { color: theme.colors.white }]}>
-        Verificada em:{' '}
-        <Text
-          style={[
-            theme.styles.bodySm,
-            { fontFamily: theme.fonts.InterMedium, color: theme.colors.white },
-          ]}
-        >
-          {date}
-        </Text>
-      </Text>
     </TouchableOpacity>
   )
 }
@@ -73,19 +68,32 @@ const NewsCard = ({ title, status, link, date }: NewsCardProps) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 100,
-    backgroundColor: theme.colors.black,
-    borderRadius: 16,
-    padding: '4%',
+    height: theme.spacing64 * 3,
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.spacing32,
+    paddingVertical: theme.spacing10,
+    paddingHorizontal: theme.spacing20,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    marginBottom: '2%',
+    marginBottom: theme.spacing10,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   titleContainer: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  footerContainer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    left: 20,
+    marginTop: theme.spacing10,
   },
   statusContainer: {
     flexDirection: 'row',
