@@ -1,3 +1,5 @@
+import { User } from '@types'
+
 const isValidUrl = (url: string): boolean => {
   const pattern = new RegExp(
     '^(https?:\\/\\/)?' +
@@ -16,4 +18,8 @@ const isValidText = (text: string): boolean => {
   return text.length >= 50
 }
 
-export { isValidText, isValidUrl }
+const isUserAuthenticated = (user: User) => {
+  return user.accessToken !== ''
+}
+
+export { isUserAuthenticated, isValidText, isValidUrl }

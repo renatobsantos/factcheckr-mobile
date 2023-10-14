@@ -6,24 +6,34 @@ import { Container } from '@components/Container'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 import { ProfileParamsList } from '@types'
+import { isUserAuthenticated } from '@utils'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { RootState } from '../../redux/store'
+import { initialUser, setUser } from '../../redux/user/userSlice'
 
 interface ProfileProps {
   navigation: StackNavigationProp<ProfileParamsList, 'Profile'>
 }
 
 const Profile = ({ navigation }: ProfileProps) => {
+  const user = useSelector((state: RootState) => state.user.user)
+  const dispatch = useDispatch()
+
   return (
     <Container>
       <TouchableOpacity
         style={styles.loginContainer}
         activeOpacity={0.5}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => !isUserAuthenticated(user) && navigation.navigate('Login')}
       >
         <View style={styles.iconContainer}>
           <Feather name="user" size={40} color={theme.colors.white} />
         </View>
 
-        <Text style={styles.loginText}>Log in ou criar conta</Text>
+        <Text style={styles.loginText}>
+          {isUserAuthenticated(user) ? user.name : 'Log in ou criar conta'}
+        </Text>
       </TouchableOpacity>
       <View style={[styles.cardContainer, styles.counterContainer]}>
         <View style={{ width: '50%', paddingLeft: theme.spacing20 }}>
@@ -83,7 +93,11 @@ const Profile = ({ navigation }: ProfileProps) => {
       </View>
 
       <View style={[styles.cardContainer, { position: 'absolute', bottom: theme.spacing32 }]}>
-        <TouchableOpacity style={styles.card} activeOpacity={0.5}>
+        <TouchableOpacity
+          style={styles.card}
+          activeOpacity={0.5}
+          onPress={() => dispatch(setUser(initialUser))}
+        >
           <View style={styles.cardTextContainer}>
             <Feather name="log-out" size={24} color={theme.colors.red} />
             <Text style={[styles.cardText, { color: theme.colors.red }]}>Sair</Text>
