@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { ActiveType } from '@components/ActiveType'
@@ -7,14 +6,15 @@ import { Container } from '@components/Container'
 import { SearchBar } from '@components/SearchBar'
 import { TextForm } from '@components/TextForm'
 import { VerifyButton } from '@components/VerifyButton'
+import { useHomeStore } from '@store/HomeStore'
 import { theme } from '@theme'
 
 const Home = () => {
-  const [isLink, setIsLink] = useState(true)
+  const { activeTab, setActiveTab } = useHomeStore()
 
   const getActiveColor = (condition = true) => {
-    if (condition) return isLink ? theme.colors.black : theme.colors.gray
-    else return !isLink ? theme.colors.black : theme.colors.gray
+    if (condition) return activeTab === 'Link' ? theme.colors.black : theme.colors.gray
+    else return activeTab === 'Text' ? theme.colors.black : theme.colors.gray
   }
 
   return (
@@ -27,28 +27,28 @@ const Home = () => {
         <View style={{ flexDirection: 'row' }}>
           <View style={{ paddingRight: 20 }}>
             <Text
-              onPress={() => setIsLink(true)}
+              onPress={() => setActiveTab('Link')}
               style={[theme.styles.heading2, { color: getActiveColor() }]}
             >
               Link
             </Text>
-            {isLink && <ActiveType />}
+            {activeTab === 'Link' && <ActiveType />}
           </View>
 
           <View>
             <Text
-              onPress={() => setIsLink(false)}
+              onPress={() => setActiveTab('Text')}
               style={[theme.styles.heading2, { color: getActiveColor(false) }]}
             >
               Texto
             </Text>
-            {!isLink && <ActiveType />}
+            {activeTab === 'Text' && <ActiveType />}
           </View>
         </View>
       </View>
 
-      {isLink ? <SearchBar /> : <TextForm />}
-      <AdvancedSettings isLink={isLink} />
+      {activeTab === 'Link' ? <SearchBar /> : <TextForm />}
+      <AdvancedSettings />
       <VerifyButton />
     </Container>
   )

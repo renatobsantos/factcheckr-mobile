@@ -1,72 +1,33 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 
 import { NewsCard } from '@components/NewsCard'
+import { useExploreStore } from '@store/ExploreStore'
+import { useNewsStore } from '@store/NewsStore'
 import { theme } from '@theme'
-import { CheckedNewsStatusEnum } from '@types'
 
 const Trending = () => {
-  const DATA = [
-    {
-      id: '1',
-      title: 'Titulo 1 Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.REAL,
-      link: 'https://example.com',
-      date: new Date().toLocaleDateString(),
-    },
-    {
-      id: '2',
-      title: 'Titulo 2',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.UNCERTAIN,
-      date: new Date().toLocaleDateString(),
-    },
-    {
-      id: '3',
-      title: 'Titulo 3',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.FAKE,
-      link: 'https://example.com',
-      date: new Date().toLocaleDateString(),
-    },
-    {
-      id: '4',
-      title: 'Titulo 4',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.REAL,
-      link: 'https://example.com',
-      date: new Date().toLocaleDateString(),
-    },
-    {
-      id: '5',
-      title: 'Titulo 5',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.UNCERTAIN,
-      date: new Date().toLocaleDateString(),
-    },
-    {
-      id: '6',
-      title: 'Titulo 6',
-      description:
-        'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.',
-      status: CheckedNewsStatusEnum.FAKE,
-      link: 'https://example.com',
-      date: new Date().toLocaleDateString(),
-    },
-  ]
+  const { trendingNews } = useNewsStore()
+  const { searchText } = useExploreStore()
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={DATA}
+        data={trendingNews.filter((news) =>
+          news.title.toLowerCase().includes(searchText.toLowerCase())
+        )}
         style={styles.newsContainer}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <NewsCard item={item} />}
+        renderItem={({ item }) => (
+          <NewsCard
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            status={item.status}
+            link={item.link}
+            date={item.date}
+            isTrending={item.isTrending}
+          />
+        )}
       />
     </View>
   )

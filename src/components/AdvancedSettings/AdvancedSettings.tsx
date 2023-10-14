@@ -3,44 +3,17 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 
 import { ModelCard } from '@components/ModelCard'
 import { Feather } from '@expo/vector-icons'
+import { useHomeStore } from '@store/HomeStore'
+import { useModelStore } from '@store/ModelStore'
 import { theme } from '@theme'
 
-interface AdvancedSettingsProps {
-  isLink: boolean
-}
-
-const AdvancedSettings = ({ isLink }: AdvancedSettingsProps) => {
+const AdvancedSettings = () => {
+  const { models } = useModelStore()
+  const { activeTab } = useHomeStore()
   const [isDown, setIsDown] = useState(true)
 
-  const DATA = [
-    {
-      id: '1',
-      title: 'Modelo 1',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-    },
-    {
-      id: '2',
-      title: 'Modelo 2',
-      description: 'Lorem Ipsum',
-    },
-    {
-      id: '3',
-      title: 'Modelo 3',
-      description: 'Lorem Ipsum',
-    },
-    {
-      id: '4',
-      title: 'Modelo 4',
-      description: 'Lorem Ipsum',
-    },
-    {
-      id: '5',
-      title: 'Modelo 5',
-      description: 'Lorem Ipsum',
-    },
-  ]
   return (
-    <View style={[styles.container, { height: isLink ? '41%' : '22.5%' }]}>
+    <View style={[styles.container, { height: activeTab === 'Link' ? '41%' : '22.5%' }]}>
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => setIsDown(!isDown)}
@@ -52,10 +25,12 @@ const AdvancedSettings = ({ isLink }: AdvancedSettingsProps) => {
 
       {isDown && (
         <FlatList
-          data={DATA}
+          data={models}
           style={styles.cardContainer}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ModelCard item={item} />}
+          renderItem={({ item }) => (
+            <ModelCard id={item.id} title={item.title} description={item.description} />
+          )}
         />
       )}
     </View>

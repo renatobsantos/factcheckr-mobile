@@ -2,21 +2,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
-import { CheckedNewsStatusEnum } from '@types'
+import { NewsCardProps } from '@types'
 
-interface NewsCardProps {
-  item: {
-    title: string
-    description: string
-    status: CheckedNewsStatusEnum
-    link?: string
-    date: string
-  }
-}
-
-const NewsCard = ({ item }: NewsCardProps) => {
-  const { title, description, status, link, date } = item
-
+const NewsCard = ({ title, description, status, link, date, isTrending }: NewsCardProps) => {
   const getColorStatus = () => {
     return status === 'verdadeira'
       ? theme.colors.green
@@ -29,7 +17,7 @@ const NewsCard = ({ item }: NewsCardProps) => {
     <TouchableOpacity style={styles.container} activeOpacity={0.5}>
       <View style={styles.titleContainer}>
         <Text style={[theme.styles.heading3, { width: '90%' }]}>{title}</Text>
-        <Feather name="trending-up" size={24} color={theme.colors.orange} />
+        {isTrending && <Feather name="trending-up" size={24} color={theme.colors.orange} />}
       </View>
       <Text style={[theme.styles.bodySm, theme.styles.link]}>{link ?? 'sem link'}</Text>
       <Text style={[theme.styles.bodySm, { width: '90%' }]}>{description}</Text>

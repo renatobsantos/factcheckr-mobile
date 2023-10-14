@@ -2,7 +2,8 @@ import { Dimensions, StyleSheet } from 'react-native'
 
 export const theme = {
   colors: {
-    black: '#000000',
+    background: '#FAFAFA',
+    black: '#1E1E1E',
     blue: '#0069FF',
     white: '#FFFFFF',
     gray: '#AEAEAE',
@@ -14,18 +15,17 @@ export const theme = {
     yellow: '#FFB800',
   },
   fonts: {
-    InterLight: 'Inter_300Light',
     InterRegular: 'Inter_400Regular',
-    InterMedium: 'Inter_500Medium',
-    InterBold: 'Inter_700Bold',
     EpilogueBold: 'Epilogue_700Bold',
     PoppinsMedium: 'Poppins_500Medium',
     PoppinsSemiBold: 'Poppins_600SemiBold',
     PoppinsBold: 'Poppins_700Bold',
   },
-  screen_width: Dimensions.get('window').width,
-  screen_height: Dimensions.get('window').height,
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height,
   spacing10: 10,
+  spacing12: 12,
+  spacing16: 16,
   spacing20: 20,
   spacing24: 24,
   spacing28: 28,
@@ -41,18 +41,22 @@ export const theme = {
     headingLogo: {
       fontSize: 24,
       fontFamily: 'Epilogue_700Bold',
+      color: '#1E1E1E',
     },
     heading1: {
       fontSize: 24,
       fontFamily: 'Poppins_600SemiBold',
+      color: '#1E1E1E',
     },
     heading2: {
       fontSize: 20,
       fontFamily: 'Poppins_600SemiBold',
+      color: '#1E1E1E',
     },
     heading3: {
       fontSize: 16,
       fontFamily: 'Poppins_600SemiBold',
+      color: '#1E1E1E',
     },
     link: {
       color: '#5A88FF',

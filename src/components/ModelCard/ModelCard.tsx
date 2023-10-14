@@ -2,21 +2,20 @@ import { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
+import { useModelStore } from '@store/ModelStore'
 import { theme } from '@theme'
+import { ModelCardProps } from '@types'
 
-interface ModelCardProps {
-  item: {
-    title: string
-    description: string
-  }
-}
+const ModelCard = ({ id, title, description }: ModelCardProps) => {
+  const { addModel, removeModel } = useModelStore()
 
-const ModelCard = ({ item }: ModelCardProps) => {
-  const { title, description } = item
   const [isModelAdded, setIsModelAdded] = useState(false)
   const [isInfoPressed, setIsInfoPressed] = useState(false)
 
-  const onPress = () => setIsModelAdded(!isModelAdded)
+  const onPress = () => {
+    isModelAdded ? removeModel(id) : addModel({ id, title, description })
+    setIsModelAdded(!isModelAdded)
+  }
   const onInfoPress = () => setIsInfoPressed(!isInfoPressed)
 
   return (

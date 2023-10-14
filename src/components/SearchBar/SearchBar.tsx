@@ -1,15 +1,18 @@
-import { useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
+import { useExploreStore } from '@store/ExploreStore'
+import { useHomeStore } from '@store/HomeStore'
 import { theme } from '@theme'
 
 interface SearchBarProps {
   placeholder?: string
+  isHomePage?: boolean
 }
 
-const SearchBar = ({ placeholder }: SearchBarProps) => {
-  const [value, setValue] = useState('')
+const SearchBar = ({ placeholder, isHomePage = true }: SearchBarProps) => {
+  const { linkText, setLinkText } = useHomeStore()
+  const { searchText, setSearchText } = useExploreStore()
 
   return (
     <View style={styles.container}>
@@ -17,8 +20,10 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
         placeholder={placeholder ?? 'Digite o link da notícia'}
         placeholderTextColor="#9E9E9E"
         style={styles.inputText}
-        onChangeText={(text) => setValue(text)}
-        value={value}
+        onChangeText={(text) => {
+          isHomePage ? setLinkText(text) : setSearchText(text)
+        }}
+        value={isHomePage ? linkText : searchText}
       ></TextInput>
       <Feather name="search" size={20} />
     </View>

@@ -34,7 +34,7 @@ const AppRoutes = () => {
           tabBarShowLabel: false,
           headerShown: false,
           tabBarStyle: {
-            width: theme.screen_width,
+            width: theme.screenWidth,
             height: theme.spacing64,
             backgroundColor: theme.colors.white,
           },
