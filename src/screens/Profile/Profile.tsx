@@ -25,7 +25,7 @@ const Profile = ({ navigation }: ProfileProps) => {
       <TouchableOpacity
         style={styles.loginContainer}
         activeOpacity={0.5}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => !isUserAuthenticated(user) && navigation.navigate('Login')}
       >
         <View style={styles.iconContainer}>
           <Feather name="user" size={40} color={theme.colors.white} />

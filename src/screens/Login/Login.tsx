@@ -5,11 +5,10 @@ import { StackNavigationProp } from '@react-navigation/stack'
 
 import { Container } from '@components/Container'
 import { Feather } from '@expo/vector-icons'
+import { setUser } from '@redux/user'
 import { theme } from '@theme'
 import { ProfileParamsList } from '@types'
 import { useDispatch } from 'react-redux'
-
-import { setUser } from '../../redux/user/userSlice'
 
 interface LoginProps {
   navigation: StackNavigationProp<ProfileParamsList, 'Login'>

@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 
-import { Providers } from '../redux/provider'
+import { Providers } from '@redux/provider'
+
 import { AppRoutes } from './app.routes'
 
 const Routes = () => {

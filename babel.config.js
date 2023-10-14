@@ -9,6 +9,8 @@ module.exports = function (api) {
           alias: {
             '@components': './src/components',
             '@screens': './src/screens',
+            '@redux/provider': './src/redux/provider.tsx',
+            '@redux/user': './src/redux/user/userSlice.ts',
             '@routes': './src/routes/index.tsx',
             '@store': './src/store',
             '@theme': './src/global/styles/index.tsx',
