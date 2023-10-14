@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { ActiveType } from '@components/ActiveType'
 import { Container } from '@components/Container'
 import { SearchBar } from '@components/SearchBar'
 import { Trending } from '@components/Trending'
+import { useExploreStore } from '@store/ExploreStore'
 import { theme } from '@theme'
 
 const Explore = () => {
-  const [isTrending, setIsTrending] = useState(true)
+  const { activeTab, setActiveTab } = useExploreStore()
 
   const getActiveColor = (condition = true) => {
-    if (condition) return isTrending ? theme.colors.black : theme.colors.gray
-    else return !isTrending ? theme.colors.black : theme.colors.gray
+    if (condition) return activeTab === 'Trending' ? theme.colors.black : theme.colors.gray
+    else return activeTab === 'MyVerifications' ? theme.colors.black : theme.colors.gray
   }
 
   return (
@@ -25,28 +26,28 @@ const Explore = () => {
         <View style={{ flexDirection: 'row' }}>
           <View style={{ paddingRight: 20 }}>
             <Text
-              onPress={() => setIsTrending(true)}
+              onPress={() => setActiveTab('Trending')}
               style={[theme.styles.heading2, { color: getActiveColor() }]}
             >
               Em alta
             </Text>
-            {isTrending && <ActiveType />}
+            {activeTab === 'Trending' && <ActiveType />}
           </View>
 
           <View>
             <Text
-              onPress={() => setIsTrending(false)}
+              onPress={() => setActiveTab('MyVerifications')}
               style={[theme.styles.heading2, { color: getActiveColor(false) }]}
             >
-              Minhas pesquisas
+              Minhas verificações
             </Text>
-            {!isTrending && <ActiveType />}
+            {activeTab === 'MyVerifications' && <ActiveType />}
           </View>
         </View>
       </View>
-      <SearchBar placeholder="Digite o título da notícia" />
-      {/* TODO: Add MyResearchComponent */}
-      {isTrending ? <Trending /> : <Trending />}
+      <SearchBar placeholder="Digite o título da notícia" isHomePage={false} />
+      {/* TODO: Add MyVerificationsComponent */}
+      {activeTab === 'Trending' ? <Trending /> : <Trending />}
     </Container>
   )
 }

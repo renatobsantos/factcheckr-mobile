@@ -6,9 +6,10 @@ import { Feather } from '@expo/vector-icons'
 import { Education } from '@screens/Education'
 import { Explore } from '@screens/Explore'
 import { Home } from '@screens/Home'
-import { Profile } from '@screens/Profile'
 import { theme } from '@theme'
 import { AppParamsList } from '@types'
+
+import { ProfileStack } from './profile.routes'
 
 const TabStack = createBottomTabNavigator<AppParamsList>()
 
@@ -25,7 +26,7 @@ const AppRoutes = () => {
             if (route.name === 'Home') iconName = 'home'
             else if (route.name === 'Education') iconName = 'book-open'
             else if (route.name === 'Explore') iconName = 'compass'
-            else if (route.name === 'Profile') iconName = 'user'
+            else if (route.name === 'ProfileStack') iconName = 'user'
 
             return <Feather name={iconName} size={22} color={color} />
           },
@@ -34,7 +35,7 @@ const AppRoutes = () => {
           tabBarShowLabel: false,
           headerShown: false,
           tabBarStyle: {
-            width: theme.screen_width,
+            width: theme.screenWidth,
             height: theme.spacing64,
             backgroundColor: theme.colors.white,
           },
@@ -46,7 +47,7 @@ const AppRoutes = () => {
         <Screen name="Home" component={Home} />
         <Screen name="Education" component={Education} />
         <Screen name="Explore" component={Explore} />
-        <Screen name="Profile" component={Profile} />
+        <Screen name="ProfileStack" component={ProfileStack} />
       </Navigator>
     </View>
   )

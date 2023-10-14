@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 
+import { useHomeStore } from '@store/HomeStore'
 import { theme } from '@theme'
 
 interface TextFormProps {}
 
 const TextForm = ({}: TextFormProps) => {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-
+  const { titleText, setTitleText, descriptionText, setDescriptionText } = useHomeStore()
   return (
     <>
       <View style={styles.container}>
@@ -16,27 +14,18 @@ const TextForm = ({}: TextFormProps) => {
           placeholder="Digite o titulo da notícia"
           placeholderTextColor="#9E9E9E"
           style={styles.inputText}
-          onChangeText={(text) => setTitle(text)}
-          value={title}
+          onChangeText={(text) => setTitleText(text)}
+          value={titleText}
         ></TextInput>
       </View>
-      <View
-        style={[
-          styles.container,
-          {
-            marginTop: theme.spacing10,
-            height: theme.spacing64 + theme.spacing64,
-            alignItems: 'flex-start',
-            paddingTop: theme.spacing20,
-          },
-        ]}
-      >
+
+      <View style={[styles.container, styles.descriptionContainer]}>
         <TextInput
           placeholder="Digite o texto da notícia"
           placeholderTextColor="#9E9E9E"
           style={styles.inputText}
-          onChangeText={(text) => setDescription(text)}
-          value={description}
+          onChangeText={(text) => setDescriptionText(text)}
+          value={descriptionText}
         ></TextInput>
       </View>
     </>
@@ -61,6 +50,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: theme.fonts.InterRegular,
     width: '80%',
+  },
+  descriptionContainer: {
+    marginTop: theme.spacing10,
+    height: theme.spacing64 + theme.spacing64,
+    alignItems: 'flex-start',
+    paddingTop: theme.spacing20,
   },
 })
 

@@ -1,20 +1,30 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+import { StackNavigationProp } from '@react-navigation/stack'
+
 import { Container } from '@components/Container'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
+import { ProfileParamsList } from '@types'
 
-const Profile = () => {
+interface ProfileProps {
+  navigation: StackNavigationProp<ProfileParamsList, 'Profile'>
+}
+
+const Profile = ({ navigation }: ProfileProps) => {
   return (
     <Container>
-      <View style={styles.loginContainer}>
-        <TouchableOpacity style={styles.iconContainer} activeOpacity={0.5}>
+      <TouchableOpacity
+        style={styles.loginContainer}
+        activeOpacity={0.5}
+        onPress={() => navigation.navigate('Login')}
+      >
+        <View style={styles.iconContainer}>
           <Feather name="user" size={40} color={theme.colors.white} />
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
-          <Text style={styles.loginText}>Log in ou criar conta</Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+
+        <Text style={styles.loginText}>Log in ou criar conta</Text>
+      </TouchableOpacity>
       <View style={[styles.cardContainer, styles.counterContainer]}>
         <View style={{ width: '50%', paddingLeft: theme.spacing20 }}>
           <Text style={styles.numberText}>-</Text>
