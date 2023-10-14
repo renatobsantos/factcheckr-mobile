@@ -31,3 +31,21 @@ export interface ModelCardProps {
   title: string
   description: string
 }
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  news: News[]
+  accessToken: string
+}
+
+export interface News {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  title?: string
+  content: string
+  isFake?: boolean
+  isTrending: boolean
+}

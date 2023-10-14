@@ -7,6 +7,9 @@ import { Container } from '@components/Container'
 import { Feather } from '@expo/vector-icons'
 import { theme } from '@theme'
 import { ProfileParamsList } from '@types'
+import { useDispatch } from 'react-redux'
+
+import { setUser } from '../../redux/user/userSlice'
 
 interface LoginProps {
   navigation: StackNavigationProp<ProfileParamsList, 'Login'>
@@ -18,6 +21,7 @@ const Login = ({ navigation }: LoginProps) => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const dispatch = useDispatch()
 
   const handlePasswordIcon = () => {
     setIsPasswordVisible(!isPasswordVisible)
@@ -47,6 +51,20 @@ const Login = ({ navigation }: LoginProps) => {
   const setOpacity = () => {
     if ((isCreatingAccount && name === '') || email === '' || password === '') return false
     return true
+  }
+
+  const handleOnPress = () => {
+    dispatch(
+      setUser({
+        id: 'ipfiweprjwrweorwrwer',
+        name: 'Renato',
+        email: 'renato@example.com',
+        news: [],
+        accessToken: 'adsadasdasdasdasdsad',
+      })
+    )
+
+    navigation.goBack()
   }
 
   return (
@@ -122,7 +140,7 @@ const Login = ({ navigation }: LoginProps) => {
           <TouchableOpacity
             style={[styles.buttonContainer, { opacity: setOpacity() ? 1 : 0.5 }]}
             disabled={isCreatingAccount ? setCreatingAccountDisabled() : setLoginDisabled()}
-            onPress={handlePasswordIcon}
+            onPress={handleOnPress}
           >
             <Text style={[theme.styles.heading2, styles.buttonText]}>
               {isCreatingAccount ? 'Criar' : 'Entrar'}
