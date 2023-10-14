@@ -24,7 +24,7 @@ const SearchBar = ({ placeholder, isHomePage = true }: SearchBarProps) => {
           isHomePage ? setLinkText(text) : setSearchText(text)
         }}
         value={isHomePage ? linkText : searchText}
-      ></TextInput>
+      />
       <Feather name="search" size={20} />
     </View>
   )

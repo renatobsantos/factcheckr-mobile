@@ -2,7 +2,12 @@ export type AppParamsList = {
   Education: undefined
   Home: undefined
   Explore: undefined
+  ProfileStack: undefined
+}
+
+export type ProfileParamsList = {
   Profile: undefined
+  Login: undefined
 }
 
 export enum VerifiedNewsStatusEnum {
