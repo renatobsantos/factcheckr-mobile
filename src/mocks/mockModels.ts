@@ -1,4 +1,4 @@
-import { ModelCardProps } from '@components/ModelCard/ModelCard'
+import { ModelCardProps } from '@types'
 
 export const mockModels: ModelCardProps[] = [
   {
