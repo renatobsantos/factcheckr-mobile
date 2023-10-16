@@ -40,6 +40,17 @@ export interface User {
   accessToken: string
 }
 
+export interface CreateUserInput {
+  name: string
+  email: string
+  password: string
+}
+
+export interface LoginInput {
+  email: string
+  password: string
+}
+
 export interface News {
   id: string
   createdAt: Date
@@ -49,3 +60,16 @@ export interface News {
   isFake?: boolean
   isTrending: boolean
 }
+
+export interface NewsInput {
+  title?: string
+  content: string
+  userId?: string
+}
+
+export interface PaginationControls {
+  total: string
+  totalPages: string
+}
+
+export type NewsPaginated = PaginationControls & { news: News[] }

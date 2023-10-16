@@ -10,6 +10,8 @@ import { theme } from '@theme'
 import { ProfileParamsList } from '@types'
 import { useDispatch } from 'react-redux'
 
+import { createUser, login } from '../../utils/axios'
+
 interface LoginProps {
   navigation: StackNavigationProp<ProfileParamsList, 'Login'>
 }
@@ -20,6 +22,7 @@ const Login = ({ navigation }: LoginProps) => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
 
   const handlePasswordIcon = () => {
@@ -48,22 +51,28 @@ const Login = ({ navigation }: LoginProps) => {
   }
 
   const setOpacity = () => {
-    if ((isCreatingAccount && name === '') || email === '' || password === '') return false
+    if ((isCreatingAccount && name === '') || email === '' || password === '' || loading)
+      return false
     return true
   }
 
-  const handleOnPress = () => {
-    dispatch(
-      setUser({
-        id: 'ipfiweprjwrweorwrwer',
-        name: 'Renato',
-        email: 'renato@example.com',
-        news: [],
-        accessToken: 'adsadasdasdasdasdsad',
+  const handleOnPress = async () => {
+    setLoading(true)
+    if (isCreatingAccount) {
+      await createUser('/api/users', {
+        name,
+        email,
+        password,
       })
-    )
+    }
 
-    navigation.goBack()
+    const response = await login('/api/users/login', { email, password })
+
+    if (response.accessToken !== '') {
+      dispatch(setUser(response))
+      setLoading(false)
+      navigation.goBack()
+    }
   }
 
   return (
@@ -138,8 +147,10 @@ const Login = ({ navigation }: LoginProps) => {
 
           <TouchableOpacity
             style={[styles.buttonContainer, { opacity: setOpacity() ? 1 : 0.5 }]}
-            disabled={isCreatingAccount ? setCreatingAccountDisabled() : setLoginDisabled()}
-            onPress={handleOnPress}
+            disabled={
+              (isCreatingAccount ? setCreatingAccountDisabled() : setLoginDisabled()) || loading
+            }
+            onPress={() => !loading && handleOnPress()}
           >
             <Text style={[theme.styles.heading2, styles.buttonText]}>
               {isCreatingAccount ? 'Criar' : 'Entrar'}
