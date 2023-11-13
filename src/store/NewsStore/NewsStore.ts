@@ -1,16 +1,18 @@
-import { NewsCardProps } from '@types'
+import { News, NewsListTabs } from '@types'
 import { create } from 'zustand'
 
-import { mockTrendingNews } from '../../mocks/mockTrendingNews'
-
 interface NewsState {
-  news: Array<NewsCardProps>
-  trendingNews: Array<NewsCardProps>
+  news: News[]
+  setNews: (news: News[]) => void
+  newsActiveTab: NewsListTabs
+  setNewsActiveTab: (tab: NewsListTabs) => void
 }
 
 const useNewsStore = create<NewsState>()((set) => ({
-  news: mockTrendingNews,
-  trendingNews: mockTrendingNews.filter((news) => news.isTrending === true),
+  news: [],
+  setNews: (newsArray: News[]) => set(() => ({ news: newsArray })),
+  newsActiveTab: 'AllNews',
+  setNewsActiveTab: (tab: NewsListTabs) => set(() => ({ newsActiveTab: tab })),
 }))
 
 export default useNewsStore

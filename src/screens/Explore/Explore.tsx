@@ -5,15 +5,20 @@ import { ActiveType } from '@components/ActiveType'
 import { Container } from '@components/Container'
 import { SearchBar } from '@components/SearchBar'
 import { Trending } from '@components/Trending'
-import { useExploreStore } from '@store/ExploreStore'
+import { useNewsStore } from '@store/NewsStore'
 import { theme } from '@theme'
 
 const Explore = () => {
-  const { activeTab, setActiveTab } = useExploreStore()
+  const { newsActiveTab, setNewsActiveTab } = useNewsStore()
 
-  const getActiveColor = (condition = true) => {
-    if (condition) return activeTab === 'Trending' ? theme.colors.black : theme.colors.gray
-    else return activeTab === 'MyVerifications' ? theme.colors.black : theme.colors.gray
+  const getActiveColor = (isAllNewsActive = true, isTrendingNewsActive = false): string => {
+    if (isAllNewsActive) {
+      return newsActiveTab === 'AllNews' ? 'text-black' : 'text-gray'
+    } else if (isTrendingNewsActive) {
+      return newsActiveTab === 'TrendingNews' ? 'text-black' : 'text-gray'
+    } else {
+      return newsActiveTab === 'UserNews' ? 'text-black' : 'text-gray'
+    }
   }
 
   return (
@@ -26,28 +31,37 @@ const Explore = () => {
         <View style={{ flexDirection: 'row' }}>
           <View style={{ paddingRight: 20 }}>
             <Text
-              onPress={() => setActiveTab('Trending')}
+              onPress={() => setNewsActiveTab('AllNews')}
               style={[theme.styles.heading2, { color: getActiveColor() }]}
+            >
+              Todas Notícias
+            </Text>
+            {newsActiveTab === 'AllNews' && <ActiveType />}
+          </View>
+
+          <View style={{ paddingRight: 20 }}>
+            <Text
+              onPress={() => setNewsActiveTab('TrendingNews')}
+              style={[theme.styles.heading2, { color: getActiveColor(false, true) }]}
             >
               Em alta
             </Text>
-            {activeTab === 'Trending' && <ActiveType />}
+            {newsActiveTab === 'TrendingNews' && <ActiveType />}
           </View>
 
           <View>
             <Text
-              onPress={() => setActiveTab('MyVerifications')}
-              style={[theme.styles.heading2, { color: getActiveColor(false) }]}
+              onPress={() => setNewsActiveTab('UserNews')}
+              style={[theme.styles.heading2, { color: getActiveColor(false, false) }]}
             >
               Minhas verificações
             </Text>
-            {activeTab === 'MyVerifications' && <ActiveType />}
+            {newsActiveTab === 'UserNews' && <ActiveType />}
           </View>
         </View>
       </View>
       <SearchBar placeholder="Digite o título da notícia" isHomePage={false} />
-      {/* TODO: Add MyVerificationsComponent */}
-      {activeTab === 'Trending' ? <Trending /> : <Trending />}
+      {newsActiveTab === 'TrendingNews' ? <Trending /> : <Trending />}
     </Container>
   )
 }

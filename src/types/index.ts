@@ -73,3 +73,5 @@ export interface PaginationControls {
 }
 
 export type NewsPaginated = PaginationControls & { news: News[] }
+
+export type NewsListTabs = 'AllNews' | 'TrendingNews' | 'UserNews'
